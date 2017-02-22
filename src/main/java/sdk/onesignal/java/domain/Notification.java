@@ -29,6 +29,9 @@ public class Notification implements Serializable {
 	@SerializedName("contents")
 	@Expose
 	private HashMap<String, String> contents;
+	
+	@SerializedName("include_player_ids")
+	private List<String> includePlayerIds;
 
 	public String getAppId() {
 		return appId;
@@ -56,6 +59,14 @@ public class Notification implements Serializable {
 
 	public void setData(Data data) {
 		this.data = data;
+	}
+
+	public List<String> getIncludePlayerIds() {
+		return includePlayerIds;
+	}
+
+	public void setIncludePlayerIds(List<String> includePlayerIds) {
+		this.includePlayerIds = includePlayerIds;
 	}
 	
 }
