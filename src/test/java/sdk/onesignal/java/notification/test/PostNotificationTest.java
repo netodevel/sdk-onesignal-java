@@ -37,9 +37,13 @@ public class PostNotificationTest {
 		data.setFoo("bar");
 		notification.setData(data);
 		
-		List<String> segments = new ArrayList<String>();
-		segments.add("All");
-		notification.setIncludedSegments(segments);
+//		List<String> segments = new ArrayList<String>();
+//		segments.add("All");
+//		notification.setIncludedSegments(segments);
+		
+		List<String> playersId = new ArrayList<String>();
+		playersId.add("a578bc7b-887d-4a10-bf8f-202d372dc2c3");
+		notification.setIncludePlayerIds(playersId);
 		
 		return notification;
 	}
