@@ -8,12 +8,14 @@ import feign.Feign;
 import feign.Logger;
 import feign.gson.GsonDecoder;
 import feign.gson.GsonEncoder;
-import sdk.onesignal.java.domain.Authentication;
 import sdk.onesignal.java.utils.FixedHeadersInterceptor;
 
+/**
+ * @author NetoDevel
+ */
 public class ProdutionCommunicator implements Communicator {
 
-	public <T> T build(Class<T> clazz, Authentication auth) {
+	public <T> T build(Class<T> clazz) {
 		Gson gson = new GsonBuilder().
 				setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
 		return Feign

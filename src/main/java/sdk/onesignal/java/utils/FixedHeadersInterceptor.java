@@ -10,7 +10,7 @@ public class FixedHeadersInterceptor implements RequestInterceptor {
         template.header("Accept", "application/json");
         template.header("Accept-Encoding", "utf-8");
         template.header("Accept-Charset", "utf-8");
-        template.header("Authorization", "Basic ZWU5YzdjZmYtOTgyZi00NjQ2LTk1YjQtOWE2ZGQ1YzUxMDEz");
+        template.header("Authorization", "Basic {YOUR_API_KEY}");
     }
 
 }

@@ -8,7 +8,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * @author neto
+ * @author NetoDevel
  */
 public class Notification implements Serializable {
 
@@ -24,7 +24,7 @@ public class Notification implements Serializable {
 
 	@SerializedName("data")
 	@Expose
-	private String data;
+	private Data data;
 	
 	@SerializedName("contents")
 	@Expose
@@ -36,14 +36,6 @@ public class Notification implements Serializable {
 
 	public void setAppId(String appId) {
 		this.appId = appId;
-	}
-
-	public String getData() {
-		return data;
-	}
-
-	public void setData(String data) {
-		this.data = data;
 	}
 
 	public HashMap<String, String> getContents() {
@@ -60,6 +52,10 @@ public class Notification implements Serializable {
 
 	public void setIncludedSegments(List<String> includedSegments) {
 		this.includedSegments = includedSegments;
+	}
+
+	public void setData(Data data) {
+		this.data = data;
 	}
 	
 }

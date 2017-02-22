@@ -10,7 +10,9 @@ import sdk.onesignal.java.domain.Authentication;
  */
 public class OneSignal {
 	
+	@SuppressWarnings("unused")
 	private final Authentication auth; 
+	
 	private final Communicator communicator;
 	
 	public OneSignal(final Authentication auth, final Communicator communicator) {
@@ -19,7 +21,7 @@ public class OneSignal {
 	}
 	
 	public NotificationClient notification() {
-		NotificationCommunicator notificationCommunicator = communicator.build(NotificationCommunicator.class, auth);
+		NotificationCommunicator notificationCommunicator = communicator.build(NotificationCommunicator.class);
 		return new NotificationClient(notificationCommunicator);
 	}
 	
