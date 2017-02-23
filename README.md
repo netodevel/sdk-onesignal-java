@@ -1,12 +1,30 @@
 # OneSignal Java Push Notification
 
+#About
 OneSignal is a free push notification service for mobile apps. 
 This plugin makes it easy to integrate with java projects.
 
+<p align="center">
+  <img src="art/mob.png" alt="Push Notification" />
+</p>
+
 #Install
 
+```xml
+	<repositories>
+		<repository>
+		    <id>jitpack.io</id>
+		    <url>https://jitpack.io</url>
+		</repository>
+	</repositories>
 
+	<dependency>
+	    <groupId>com.github.NetoDevel</groupId>
+	    <artifactId>sdk-onesignal-java</artifactId>
+	    <version>0.1</version>
+	</dependency>
 
+```
 #Usage
 
 ###Push Notification Specif Devices
@@ -37,6 +55,8 @@ This plugin makes it easy to integrate with java projects.
 	}
 
 ```
+
+
 
 
 #License
