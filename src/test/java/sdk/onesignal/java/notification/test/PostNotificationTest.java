@@ -17,7 +17,7 @@ import sdk.onesignal.java.domain.Notification;
  */
 public class PostNotificationTest {
 
-	public static final String API_KEY = "YOU_API_KEY";
+	public static final String API_KEY = "";
 	
 	@Test
 	public void testPostNotification() {

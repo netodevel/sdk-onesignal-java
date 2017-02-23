@@ -8,6 +8,8 @@ import feign.Feign;
 import feign.Logger;
 import feign.gson.GsonDecoder;
 import feign.gson.GsonEncoder;
+import sdk.onesignal.java.domain.Authentication;
+import sdk.onesignal.java.utils.BasicAuthOneSignal;
 import sdk.onesignal.java.utils.FixedHeadersInterceptor;
 
 /**
@@ -15,13 +17,14 @@ import sdk.onesignal.java.utils.FixedHeadersInterceptor;
  */
 public class ProdutionCommunicator implements Communicator {
 
-	public <T> T build(Class<T> clazz) {
+	public <T> T build(Class<T> clazz, Authentication auth) {
 		Gson gson = new GsonBuilder().
 				setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
 		return Feign
                 .builder()
                 .decoder(new GsonDecoder(gson)) 
                 .requestInterceptor(new FixedHeadersInterceptor()) 
+                .requestInterceptor(new BasicAuthOneSignal(auth.getKey()))
                 .logger(new Logger.JavaLogger().appendToFile("/home/neto/Documents/http.log"))
                 .logLevel(Logger.Level.FULL)
                 .encoder(new GsonEncoder(gson)) 
