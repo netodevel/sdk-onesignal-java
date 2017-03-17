@@ -1,6 +1,6 @@
 # OneSignal Java Push Notification
 
-#About
+# About
 OneSignal is a free push notification service for mobile apps. 
 This plugin makes it easy to integrate with java projects.
 
@@ -8,7 +8,7 @@ This plugin makes it easy to integrate with java projects.
   <img src="art/mob.png" alt="Push Notification" />
 </p>
 
-#Install
+# Install
 
 ```xml
 	<repositories>
@@ -25,41 +25,30 @@ This plugin makes it easy to integrate with java projects.
 	</dependency>
 
 ```
-#Usage
+# Usage
 
-###Push Notification Specif Devices
+### Push Notification specific devices
 ```java
   public static final String API_KEY = "";
+  public static final String APP_ID = "";
   
   OneSignal oneSignal = new OneSignal(new Authentication(API_KEY), new ProdutionCommunicator());
   oneSignal.notification().postNotification(prepareNotification());
   
-  private Notification prepareNotification() {
-		Notification notification = new Notification();
-		notification.setAppId("YOUR_API_ID");
-		
-		HashMap<String, String> contents = new HashMap<String, String>();
-		contents.put("en", "YOU MSG");
-		notification.setContents(contents);
-		
-		Data data = new Data();
-		data.setFoo("bar");
-		notification.setData(data);
-		
-		
-		List<String> playersId = new ArrayList<String>();
-		playersId.add("YOU_PLAYER_ID");
-		notification.setIncludePlayerIds(playersId);
-		
-		return notification;
-	}
+  HashMap<String, String> contents = new HashMap<String, String>();
+  contents.put("en", "Message");
+  oneSignal.notification().postNotification(
+				new NotificationBuilder(APP_ID, contents)
+				.withIncludedPlayerIds(Arrays.asList("5aa94fdc-f6ba-4c11-8cc2-ffda8e30a074"))
+				.build());
+ 
 
 ```
 
 
 
 
-#License
+# License
 
     The MIT License (MIT)
 

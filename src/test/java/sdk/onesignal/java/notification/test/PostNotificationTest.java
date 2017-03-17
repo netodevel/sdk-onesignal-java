@@ -1,16 +1,16 @@
 package sdk.onesignal.java.notification.test;
 
-import java.util.ArrayList;
+import static org.junit.Assert.assertEquals;
+
+import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 
 import org.junit.Test;
 
 import sdk.onesignal.java.OneSignal;
 import sdk.onesignal.java.communicators.ProdutionCommunicator;
 import sdk.onesignal.java.domain.Authentication;
-import sdk.onesignal.java.domain.Data;
-import sdk.onesignal.java.domain.Notification;
+import sdk.onesignal.java.domain.NotificationBuilder;
 
 /**
  * @author NetoDevel
@@ -18,34 +18,52 @@ import sdk.onesignal.java.domain.Notification;
 public class PostNotificationTest {
 
 	public static final String API_KEY = "";
-	
+	public static final String APP_ID = "";
+	OneSignal oneSignal = new OneSignal(new Authentication(API_KEY), new ProdutionCommunicator());
+
 	@Test
 	public void testPostNotification() {
-		OneSignal oneSignal = new OneSignal(new Authentication(API_KEY), new ProdutionCommunicator());
-		oneSignal.notification().postNotification(prepareNotification());
-	}
-	
-	private Notification prepareNotification() {
-		Notification notification = new Notification();
-		notification.setAppId("76fb68fc-cb8f-4b0f-b9e2-e71218cf256e");
-		
 		HashMap<String, String> contents = new HashMap<String, String>();
-		contents.put("en", "English Message");
-		notification.setContents(contents);
-		
-		Data data = new Data();
-		data.setFoo("bar");
-		notification.setData(data);
-		
-//		List<String> segments = new ArrayList<String>();
-//		segments.add("All");
-//		notification.setIncludedSegments(segments);
-		
-		List<String> playersId = new ArrayList<String>();
-		playersId.add("a578bc7b-887d-4a10-bf8f-202d372dc2c3");
-		notification.setIncludePlayerIds(playersId);
-		
-		return notification;
+		contents.put("en", "Message");
+		oneSignal.notification().postNotification(
+				new NotificationBuilder(APP_ID, contents)
+				.withIncludedPlayerIds(Arrays.asList("5aa94fdc-f6ba-4c11-8cc2-ffda8e30a074"))
+				.build());
 	}
 	
+	@Test
+	public void testValidateNotificationAppId() {
+		HashMap<String, String> contents = new HashMap<String, String>();
+		contents.put("en", "Message");
+		try {
+			oneSignal.notification().postNotification(new NotificationBuilder("", contents).build());
+		} catch (Exception e) {
+			assertEquals("app id can not be null", e.getMessage());
+		}
+	}
+	
+	@Test
+	public void testValidateNotificationContent() {
+		HashMap<String, String> contents = new HashMap<String, String>();
+		try {
+			oneSignal.notification().postNotification(new NotificationBuilder(APP_ID, contents).build());
+		} catch (Exception e) {
+			assertEquals("content can not be null", e.getMessage());
+		}
+	}
+	
+	@Test
+	public void testValidateNotificationIncludedSegmentsOrPlayersId() {
+		HashMap<String, String> contents = new HashMap<String, String>();
+		contents.put("en", "Message");
+		try {
+			oneSignal.notification().postNotification(new NotificationBuilder(APP_ID, contents).build());
+		} catch (Exception e) {
+			assertEquals("You must specify included_segments or players_id", e.getMessage());
+		}
+	}
+
 }
+
+
+

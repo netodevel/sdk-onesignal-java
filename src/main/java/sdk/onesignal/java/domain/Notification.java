@@ -32,11 +32,37 @@ public class Notification implements Serializable {
 	
 	@SerializedName("include_player_ids")
 	private List<String> includePlayerIds;
-
+	
+	@SerializedName("isAppInFocus")
+	@Expose
+	private Boolean isAppInFocus;
+	
+	@SerializedName("shown")
+	@Expose
+	private Boolean shown;
+	
+	@SerializedName("large_icon")
+	@Expose
+	private String largeIcon;
+	
+	@SerializedName("small_icon")
+	@Expose
+	private String smallIcon;
+	
+	public Notification(){
+	}
+	
+	public Notification(NotificationBuilder notificationBuilder){
+		this.appId = notificationBuilder.getAppId();
+		this.contents = notificationBuilder.getContent();
+		this.includedSegments = notificationBuilder.getIncludedSegments();
+		this.includePlayerIds = notificationBuilder.getIncludePlayerIds();
+	}
+	
 	public String getAppId() {
 		return appId;
 	}
-
+	
 	public void setAppId(String appId) {
 		this.appId = appId;
 	}
@@ -67,6 +93,42 @@ public class Notification implements Serializable {
 
 	public void setIncludePlayerIds(List<String> includePlayerIds) {
 		this.includePlayerIds = includePlayerIds;
+	}
+	
+	public Boolean getIsAppInFocus() {
+		return isAppInFocus;
+	}
+
+	public Notification isAppInFocus(Boolean appInFocus) {
+		this.isAppInFocus = appInFocus;
+		return this;
+	}
+
+	public Boolean getShown() {
+		return shown;
+	}
+	
+	public Notification withShown(Boolean shown) {
+		this.shown = shown;
+		return this;
+	}
+
+	public String getLargeIcon() {
+		return largeIcon;
+	}
+
+	public Notification withLargeIcon(String largeIcon) {
+		this.largeIcon = largeIcon;
+		return this;
+	}
+
+	public String getSmallIcon() {
+		return smallIcon;
+	}
+
+	public Notification withSmallIcon(String smallIcon) {
+		this.smallIcon = smallIcon;
+		return this;
 	}
 	
 }
