@@ -38,9 +38,9 @@ This plugin makes it easy to integrate with java projects.
   HashMap<String, String> contents = new HashMap<String, String>();
   contents.put("en", "Message");
   oneSignal.notification().postNotification(
-				new NotificationBuilder(APP_ID, contents)
-				.withIncludedPlayerIds(Arrays.asList("5aa94fdc-f6ba-4c11-8cc2-ffda8e30a074"))
-				.build());
+		new NotificationBuilder(APP_ID, contents)
+		.withIncludedPlayerIds(Arrays.asList("5aa94fdc-f6ba-4c11-8cc2-ffda8e30a074"))
+		.build());
  
 
 ```
