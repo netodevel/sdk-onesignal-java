@@ -5,7 +5,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import feign.Feign;
-import feign.Logger;
 import feign.gson.GsonDecoder;
 import feign.gson.GsonEncoder;
 import sdk.onesignal.java.domain.Authentication;
@@ -25,8 +24,8 @@ public class ProdutionCommunicator implements Communicator {
                 .decoder(new GsonDecoder(gson)) 
                 .requestInterceptor(new FixedHeadersInterceptor()) 
                 .requestInterceptor(new BasicAuthOneSignal(auth.getKey()))
-                .logger(new Logger.JavaLogger().appendToFile("/home/neto/Documents/http.log"))
-                .logLevel(Logger.Level.FULL)
+                //.logger(new Logger.JavaLogger().appendToFile("/home/neto/Documents/http.log"))
+               // .logLevel(Logger.Level.FULL)
                 .encoder(new GsonEncoder(gson)) 
                 .target(clazz, "https://onesignal.com/api/v1"); 
 	}
